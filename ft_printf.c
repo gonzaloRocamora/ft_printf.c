@@ -1,3 +1,4 @@
+
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -11,21 +12,41 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-char ft_putchar(char c)
+void	ft_putstr(char const *s)
 {
-	if(write(1, &c, 1))
-		return(0);
-	else
-		return (1);
+	int		i;
+
+	i = 0;
+		while (s[i])
+			write(1, &s[i++], 1);
+}
+
+static void ft_putchar(char c)
+{
+	write(1, &c, 1);	
 } 
+
+static void	ft_putnbr(int nb) {
+	if (nb < 0) {
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10) {
+		ft_putnbr(nb / 10);
+		nb = nb % 10;
+	}
+	if (nb < 10) ft_putchar(nb + 48);
+}
 
 int ft_printf(char const *str, ...)
 {
 	int i;
 	char *new_str;
+	//initialize va_list to vl
 	va_list vl;
-
+	//cast const str to 
 	new_str = (char *)str;
 	i = 0;
 	va_start(vl, str);
@@ -40,6 +61,16 @@ int ft_printf(char const *str, ...)
 						ft_putchar(va_arg(vl, int));
 						i++;
 					}
+				if(new_str[i] == 'd')
+				{
+					ft_putnbr(va_arg(vl, int));
+					i++;
+				}
+				if(new_str[i] == 's')
+				{
+					ft_putstr(va_arg(vl, char*));
+					i++;
+				}
 			}
 			else
 				{
@@ -53,8 +84,8 @@ int ft_printf(char const *str, ...)
 
 int main(void)
 {
-	char *s = "this a test to return a character: %c";
-	char t = 'T';
+	char *s = "this a test to return a:  %s";
+	char *t = "POSITIVO";
 	ft_printf(s, t);
 	return (0);
 }
