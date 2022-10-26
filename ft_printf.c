@@ -1,5 +1,5 @@
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,75 +11,50 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
-/*
-Character escape sequences are in backslash
-     notation as defined in the ANSI X3.159-1989
-     (``ANSI C89''), with extensions.  The charac-
-     ters and their meanings are as follows:
 
-           \a      Write a <bell> character.
-           \b      Write a <backspace> character.
-           \c      Ignore remaining characters in
-                   this string.
-           \f      Write a <form-feed> character.
-           \n      Write a <new-line> character.
-           \r      Write a <carriage return> char-
-                   acter.
-           \t      Write a <tab> character.
-           \v      Write a <vertical tab> charac-
-                   ter.
-           \'      Write a <single quote> charac-
-                   ter.
-           \\      Write a backslash character.
-           \num    Write a byte whose value is the
-                   1-, 2-, or 3-digit octal number
-                   num.  Multibyte characters can
-                   be constructed using multiple
-                   \num sequences.
-
-
-int	putchar(int c)
+char ft_putchar(char c)
 {
-	write(1, &c, 1);
-	return (0);
-}
+	if(write(1, &c, 1))
+		return(0);
+	else
+		return (1);
+} 
 
-size_t	ft_strlen(char const *str)
+int ft_printf(char const *str, ...)
 {
 	int i;
+	char *new_str;
+	va_list vl;
 
+	new_str = (char *)str;
 	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-
-
-*/
-//tengo que checkiar que seann las letras del print que no sean otras ni numeros
-//necesito la letra encontrada 
-char	ft_find(char *str)
-{
-	while(*str != '%')
-	{
-		str++;
-		if(*str == '%')
+	va_start(vl, str);
+	while(new_str[i])
 		{
-			//if !isalpha or
-			str++;
-			return (*str);
+			
+			if(new_str[i] == '%')
+			{
+				i++;
+				if(new_str[i] == 'c')
+					{
+						ft_putchar(va_arg(vl, int));
+						i++;
+					}
+			}
+			else
+				{
+					ft_putchar(new_str[i]);
+					i++;
+				}
 		}
-	
-	}
-	return (0);
+		return (0);
 }
+
+
 int main(void)
 {
-	char *str = "hola como %c estas";
-	char total = ft_find(str);
-	printf("La letra es: %c" , total);
+	char *s = "this a test to return a character: %c";
+	char t = 'T';
+	ft_printf(s, t);
 	return (0);
 }
