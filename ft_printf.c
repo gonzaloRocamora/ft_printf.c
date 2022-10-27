@@ -1,4 +1,3 @@
-
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -20,7 +19,10 @@ void	ft_putstr(char const *s)
 
 	i = 0;
 		while (s[i])
-			write(1, &s[i++], 1);
+		{
+			if (write(1, &s[i++], 1) < 0)
+				return (-1);
+		}
 }
 
 static void ft_putchar(char c)
@@ -39,6 +41,10 @@ static void	ft_putnbr(int nb) {
 	}
 	if (nb < 10) ft_putchar(nb + 48);
 }
+static void ft_puthex()
+
+cadena = "0123456789ABCDEF";
+caractere = cadena[indice = numero % 16]
 
 int ft_printf(char const *str, ...)
 {
@@ -71,12 +77,17 @@ int ft_printf(char const *str, ...)
 					ft_putstr(va_arg(vl, char*));
 					i++;
 				}
+				if(new_str[i] == 'x')
+				{
+
+				}
 			}
 			else
 				{
 					ft_putchar(new_str[i]);
 					i++;
 				}
+
 		}
 		return (0);
 }
@@ -84,7 +95,7 @@ int ft_printf(char const *str, ...)
 
 int main(void)
 {
-	char *s = "this a test to return a:  %s";
+	char *s = "total: %s";
 	char *t = "POSITIVO";
 	ft_printf(s, t);
 	return (0);
