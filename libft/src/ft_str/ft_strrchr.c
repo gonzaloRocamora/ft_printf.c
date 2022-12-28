@@ -6,7 +6,7 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 16:09:26 by grocamor          #+#    #+#             */
-/*   Updated: 2022/07/02 13:12:38 by grocamor         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:57:03 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strrchr(const char *s, int c)
 	int		i;
 	char	key;
 
-	i = strlen(s);
+	i = ft_strlen(s);
 	key = (char)c;
 	while (i > 0)
 	{

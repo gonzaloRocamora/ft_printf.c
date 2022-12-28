@@ -1,6 +1,6 @@
 #include <libprint.h>
 
-static void	ft_putstr(char const *s)
+void	ft_putstr(char const *s)
 {
 	int		i;
 

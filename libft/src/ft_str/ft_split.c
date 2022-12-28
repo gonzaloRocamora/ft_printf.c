@@ -6,71 +6,95 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:38:19 by grocamor          #+#    #+#             */
-/*   Updated: 2022/07/02 12:52:08 by grocamor         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:55:41 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_words(const char *str, char c)
+static char	**free_all_if_error(char **array)
 {
-	int	i;
-	int	trigger;
+	unsigned int	i;
 
 	i = 0;
-	trigger = 0;
-	while (*str)
+	while (array[i])
 	{
-		if (*str != c && trigger == 0)
-		{
-			trigger = 1;
-			i++;
-		}
-		else if (*str == c)
-			trigger = 0;
-		str++;
+		free(array[i]);
+		i++;
 	}
-	printf("Count words: %d", i);
-	return (i);
+	free(array);
+	return (NULL);
 }
 
-static char	*word_dup(const char *str, int start, int finish)
+static unsigned int	get_nb_cols(char const *s, char c)
 {
-	char	*word;
-	int		i;
+	unsigned int	i;
+	unsigned int	nb_cols;
 
+	nb_cols = 0;
+	if (!s[0])
+		return (0);
 	i = 0;
-	word = malloc((finish - start + 1) * sizeof(char));
-	while (start < finish)
-		word[i++] = str[start++];
-	word[i] = '\0';
-	printf("Wordup: %s", word);
-	return (word);
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			nb_cols++;
+			while (s[i] && s[i] == c)
+				i++;
+			continue ;
+		}
+		i++;
+	}
+	if (s[i - 1] != c)
+		nb_cols++;
+	return (nb_cols);
+}
+
+static void	get_row(char **row, unsigned int *row_len, char c)
+{
+	unsigned int	i;
+
+	*row += *row_len;
+	*row_len = 0;
+	i = 0;
+	while (**row && **row == c)
+		(*row)++;
+	while ((*row)[i])
+	{
+		if ((*row)[i] == c)
+			return ;
+		(*row_len)++;
+		i++;
+	}
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
-	int		index;
-	char	**split;
+	char			**splitted;
+	char			*row;
+	unsigned int	i;
+	unsigned int	nb_c;
+	unsigned int	row_len;
 
-	if (!s || !(split == malloc((count_words(s, c) + 1) * sizeof(char *))))
-		return (0);
+	nb_c = get_nb_cols(s, c);
+	splitted = malloc(sizeof(char *) * (nb_c + 1));
+	if (splitted == NULL)
+		return (NULL);
+	row = (char *)s;
+	row_len = 0;
 	i = 0;
-	j = 0;
-	index = -1;
-	while (i <= ft_strlen(s))
+	while (i < nb_c)
 	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
-		{
-			split[j++] = word_dup(s, index, i);
-			index = -1;
-		}
+		get_row(&row, &row_len, c);
+		splitted[i] = malloc(sizeof(char) * (row_len + 1));
+		if (splitted[i] == NULL)
+			return (free_all_if_error(splitted));
+		ft_strlcpy(splitted[i], row, row_len + 1);
 		i++;
 	}
-	split[j] = 0;
-	return (split);
+	splitted[i] = NULL;
+	return (splitted);
 }
