@@ -1,5 +1,5 @@
 # ft_printf.c
-IMPLEMENT PRINTF 
+IMPLEMENT PRINTF IN C
 <h1 align="center">
 	✏️ ft_printf
 </h1>
