@@ -9,11 +9,11 @@ IMPLEMENT PRINTF
 </p>
 
 <p align="center">
-	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/surfi89/ft_printf?color=lightblue" />
-	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/surfi89/ft_printf?color=critical" />
-	<img alt="Code language count" src="https://img.shields.io/github/languages/count/surfi89/ft_printf?color=yellow" />
-	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/surfi89/ft_printf?color=blue" />
-	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/surfi89/ft_printf?color=green" />
+	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/gonzaloRocamora/ft_printf.c?color=lightblue" />
+	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/gonzaloRocamora/ft_printf.c?color=critical" />
+	<img alt="Code language count" src="https://img.shields.io/github/languages/count/gonzaloRocamora/ft_printf.c?color=yellow" />
+	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/gonzaloRocamora/ft_printf.c?color=blue" />
+	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gonzaloRocamora/ft_printf.c?color=green" />
 </p>
 
 <h3 align="center">
