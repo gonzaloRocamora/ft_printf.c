@@ -6,11 +6,11 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:56:13 by grocamor          #+#    #+#             */
-/*   Updated: 2023/01/23 20:05:39 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:39:13 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_num_len(unsigned	int num)
 {
@@ -44,7 +44,7 @@ char	*ft_uitoa(unsigned int n)
 	return (num);
 }
 
-int	ft_print_unsigned(unsigned int n)
+int	ft_print_uns(unsigned int n)
 {
 	int		print_length;
 	char	*num;
