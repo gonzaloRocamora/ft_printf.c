@@ -6,37 +6,37 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:38:19 by grocamor          #+#    #+#             */
-/*   Updated: 2022/07/02 12:55:00 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:13:29 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*newstr;
-	size_t	i;
-	size_t	x;
-	size_t	len;
-	size_t	j;	
+	int		i;
+	int		len1;
+	int		len2;
+	char	*str;
 
-	j = 0;
-	i = 0;
-	x = ft_strlen(s1);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	newstr = malloc(sizeof(char) * (len + 1));
-	if(!newstr)
-		return (NULL);
-	while (s1[i] != '\0')
+	if (s1 && s2)
 	{
-		newstr[i] = s1[i];
-		i++;
-	}	
-	while (s2[j] != '\0')
-	{
-		newstr[x] = s2[j];
-		j++;
-		x++;
-	}	
-	newstr[x] = '\0';
-	return (newstr);
+		len1 = ft_strlen(s1);
+		len2 = ft_strlen(s2);
+		str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+		if (str == NULL)
+			return (NULL);
+		i = -1;
+		while (s1[++i])
+			str[i] = s1[i];
+		i = -1;
+		while (s2[++i])
+		{
+			str[len1] = s2[i];
+			len1++;
+		}
+		str[len1] = '\0';
+		return (str);
+	}
+	return (NULL);
 }

@@ -1,6 +1,18 @@
-#include "libprint.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/02 12:56:13 by grocamor          #+#    #+#             */
+/*   Updated: 2023/01/23 20:06:41 by grocamor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_putstr(char const *s)
+#include "libftprintf.h"
+
+int ft_putstr(char const *s)
 {
 	int		i;
 
@@ -8,4 +20,5 @@ void	ft_putstr(char const *s)
 	if (s)
 		while (s[i])
 			write(1, &s[i++], 1);
+	return (0);		
 }

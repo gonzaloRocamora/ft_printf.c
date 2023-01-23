@@ -1,10 +1,17 @@
-#include "libprint.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printhex.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/02 12:56:13 by grocamor          #+#    #+#             */
+/*   Updated: 2023/01/23 20:05:54 by grocamor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void ft_putchar(char c)
-{
-    write(1, &c, 1);
-}
-//get length of hex
+#include "libftprintf.h"
+
 int	ft_hex_len(unsigned	int num)
 {
 	int	len;
@@ -12,8 +19,7 @@ int	ft_hex_len(unsigned	int num)
 	len = 0;
 	while (num != 0)
 	{
-		//divided by 16 cause its the base of hexadecimal nums
-        len++;
+		len++;
 		num = num / 16;
 	}
 	return (len);

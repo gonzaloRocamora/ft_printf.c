@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:56:13 by grocamor          #+#    #+#             */
-/*   Updated: 2022/12/28 17:50:04 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:51:22 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libprint.h"
+#include "libftprintf.h"
 
-int ft_specifier(va_list arg, const char specifier)
+int	ft_specifier(va_list args, const char format)
 {
-   	if(specifier == 'c')
-		ft_putchar(va_arg(arg, int));
-	else if(specifier == 's')
-		ft_putstr(va_arg(arg, char *));
-	else if(specifier == 'i' || specifier == 'd')
-		ft_putnbr(va_arg(arg, unsigned long long));
-	else if(specifier == 'x' || specifier == 'X')
-		ft_printhex(va_arg(arg, unsigned int), specifier);			
-	else if(specifier == 'u')
-		ft_print_uns(va_arg(arg, unsigned long long));
-	else if(specifier == '%')
-		ft_print_module();	
-	return (0);
+	int	print_length;
+
+	print_length = 0;
+	if (format == 'c')
+		print_length += ft_putchar(va_arg(args, int));
+	else if (format == 's')
+		print_length += ft_putstr(va_arg(args, char *));
+	else if (format == 'p')
+		print_length += ft_print_ptr(va_arg(args, unsigned long long));
+	else if (format == 'd' || format == 'i')
+		print_length += ft_putnbr(va_arg(args, int));
+	else if (format == 'u')
+		print_length += ft_print_uns(va_arg(args, unsigned int));
+	else if (format == 'x' || format == 'X')
+		print_length += ft_printhex(va_arg(args, unsigned int), format);
+	else if (format == '%')
+		print_length += ft_print_module();
+	return (print_length);
 }
 
-
-int ft_printf(char const *str, ...)
+int	ft_printf(char const *str, ...)
 {
-	va_list args;
-	char *newstr;
-	size_t i;
-	int printed;
+	va_list	args;
+	char	*newstr;
+	size_t	i;
+	int		printed;
 
 	i = 0;
 	printed = 0;
@@ -43,7 +47,6 @@ int ft_printf(char const *str, ...)
 	va_start(args, str);
 	while (newstr[i])
 	{
-
 		if (newstr[i] == '%')
 		{
 			i++;
@@ -59,4 +62,3 @@ int ft_printf(char const *str, ...)
 	va_end(args);
 	return (printed);
 }
-

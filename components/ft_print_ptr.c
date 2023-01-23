@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*  ft_putptr.c                                         :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grocamor <grocamor@student.42barcel>       +#+  +:+       +#+        */
+/*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:38:19 by grocamor          #+#    #+#             */
-/*   Updated: 2022/01/11 12:38:23 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:03:17 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
 int	ft_ptr_len(unsigned long long num)
 {
@@ -35,9 +35,9 @@ void	ft_put_ptr(unsigned long long num)
 	else
 	{
 		if (num <= 9)
-			ft_putchar_fd((num + '0'), 1);
+			ft_putchar((num + '0'));
 		else
-			ft_putchar_fd((num - 10 + 'a'), 1);
+			ft_putchar((num - 10 + 'a'));
 	}
 }
 

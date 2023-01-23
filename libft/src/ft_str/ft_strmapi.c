@@ -6,7 +6,7 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:38:19 by grocamor          #+#    #+#             */
-/*   Updated: 2022/07/02 11:53:52 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:14:01 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	len = ft_strlen(s);
 	newstr = (char *)malloc(sizeof (char) * (len + 1));
-	if(!newstr)
+	if (!newstr)
 		return (NULL);
 	while (s[i] != '\0')
 	{

@@ -6,54 +6,33 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:38:19 by grocamor          #+#    #+#             */
-/*   Updated: 2022/07/02 11:54:33 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:17:44 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-size_t	ft_strlen(char const *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
-	size_t	j;
-	size_t	size;
+	size_t	c;
+	size_t	n_len;
+	char	*hay;
 
-	i = -1;
-	if (!(size = ft_strlen(needle)))
-		return ((char *) haystack);
-	while (haystack[++i] && i < n)
+	i = 0;
+	hay = (char *)haystack;
+	n_len = ft_strlen(needle);
+	if (n_len == 0 || haystack == needle)
+		return (hay);
+	while (hay[i] != '\0' && i < len)
 	{
-		j = 0;
-		while ((needle[j] == haystack[i + j]) && (i + j < n))
-		{
-			if (j == size - 1)
-				return ((char *)(haystack + i));
-			j++;
-		}
+		c = 0;
+		while (hay[i + c] != '\0' && needle[c] != '\0'
+			&& hay[i + c] == needle[c] && i + c < len)
+			c++;
+		if (c == n_len)
+			return (hay + i);
+		i++;
 	}
-	return (NULL);
-}
-
-int main(void)
-{
-	char *hay = "hellothere";
-	char *nee = "TEST";
-	size_t i = 5;
-	char *total = ft_strnstr(hay, nee, i);
-	printf("RES: %s", total);
-	return (0);	
+	return (0);
 }
