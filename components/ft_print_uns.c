@@ -6,7 +6,7 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:56:13 by grocamor          #+#    #+#             */
-/*   Updated: 2023/01/23 20:39:13 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:43:48 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_print_uns(unsigned int n)
 	else
 	{
 		num = ft_uitoa(n);
-		print_length += ft_putstr(num);
+		print_length += ft_printstr(num);
 		free(num);
 	}
 	return (print_length);

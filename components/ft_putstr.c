@@ -6,19 +6,20 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:56:13 by grocamor          #+#    #+#             */
-/*   Updated: 2023/01/23 20:41:10 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:30:33 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char const *s)
+void	ft_putstr(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	if (s)
-		while (s[i])
-			write(1, &s[i++], 1);
-	return (0);
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 }

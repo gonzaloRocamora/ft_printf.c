@@ -6,11 +6,12 @@
 /*   By: grocamor <grocamor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:56:13 by grocamor          #+#    #+#             */
-/*   Updated: 2023/01/23 20:39:21 by grocamor         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:04:32 by grocamor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 int	ft_hex_len(unsigned	int num)
 {
@@ -35,13 +36,13 @@ void	ft_put_hex(unsigned int num, const char format)
 	else
 	{
 		if (num <= 9)
-			ft_putchar((num + '0'));
+			ft_putchar_fd((num + '0'), 1);
 		else
 		{
 			if (format == 'x')
-				ft_putchar((num - 10 + 'a'));
+				ft_putchar_fd((num - 10 + 'a'), 1);
 			if (format == 'X')
-				ft_putchar((num - 10 + 'A'));
+				ft_putchar_fd((num - 10 + 'A'), 1);
 		}
 	}
 }
